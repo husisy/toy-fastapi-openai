@@ -5,11 +5,6 @@ mamba create -n toy-fastapi-openai
 mamba install -n toy-fastapi-openai fastapi pydantic openai uvicorn python-dotenv
 ```
 
-envirnment variables
-
-```bash
-```
-
 server side
 
 ```bash
