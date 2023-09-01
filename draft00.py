@@ -46,9 +46,11 @@ def update_item(apikey: str, message: ChatGPTOneSentenceOnly):
                 {"role": "user", "content": message.inputMessage},
             ]
             response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=tmp0, temperature=message.temperature)
-            ret = {'replyMessage': response.choices[0].message.content}
+            ret = {'replyMessage': response.choices[0].message.content,
+                   'total_tokens': response["usage"]["total_tokens"],
+                   'completion_tokens': response['usage']['completion_tokens']}
         else:
-            ret = {'replyMessage': None}
+            ret = {'replyMessage': None, 'completion_tokens': 0}
         return ret
     else:
         time.sleep(10)
