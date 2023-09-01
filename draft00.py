@@ -27,7 +27,9 @@ def update_item(apikey: str, chat: ChatGPTConversation):
     if apikey in SIGNED_API_KEY:
         tmp0 = chat.model_dump()['sentence']
         response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=tmp0, temperature=chat.temperature)
-        ret = {'response': response.choices[0].message.content}
+        ret = {'response': response.choices[0].message.content,
+               'total_tokens': response["usage"]["total_tokens"],
+               'completion_tokens': response['usage']['completion_tokens']}
         return ret
     else:
         time.sleep(10)
