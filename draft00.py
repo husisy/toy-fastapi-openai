@@ -23,7 +23,7 @@ class ChatGPTConversation(pydantic.BaseModel):
 app = fastapi.FastAPI()
 # TODO system
 @app.put("/multiround/{apikey}")
-def update_item(apikey: str, chat: ChatGPTConversation):
+def update_multiround(apikey: str, chat: ChatGPTConversation):
     if apikey in SIGNED_API_KEY:
         tmp0 = chat.model_dump()['sentence']
         response = openai.ChatCompletion.create(model="gpt-3.5-turbo", messages=tmp0, temperature=chat.temperature)
@@ -39,7 +39,7 @@ class ChatGPTOneSentenceOnly(pydantic.BaseModel):
     temperature: float = 0.6
 
 @app.put("/oneround/{apikey}")
-def update_item(apikey: str, message: ChatGPTOneSentenceOnly):
+def update_oneround(apikey: str, message: ChatGPTOneSentenceOnly):
     if apikey in SIGNED_API_KEY:
         print(message)
         if message.inputMessage:
