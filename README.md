@@ -10,13 +10,19 @@ server side
 ```bash
 cp .env.example .env
 # edit .env
-uvicorn draft00:app --port 9803
+uvicorn draft_server:app --port 9803
 ```
 
-client side, see `draft01.py`
+client side, see `draft_client.py`
 
 ```bash
 cp .env.example .env
 # edit .env
-python draft01.py
+python draft_client.py
+```
+
+to generate apikey
+
+```bash
+python -c 'import secrets; print(secrets.token_hex(32))'
 ```
