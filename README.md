@@ -13,6 +13,11 @@ cp .env.example .env
 uvicorn draft_server:app --port 9803
 ```
 
+to enable https on server side
+
+1. buy a domain name and setup dns
+2. install `caddy` on server side
+
 client side, see `draft_client.py`
 
 ```bash
